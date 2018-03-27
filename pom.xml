@@ -32,9 +32,14 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>		
- 		<jsoup.version>1.11.2</jsoup.version>
- 		<docx4j.version>3.3.6</docx4j.version>
- 		<docx4j-template.version>1.0.0</docx4j-template.version>
+ 		<!-- Docx4j Core -->
+ 		<docx4j.version>3.3.7</docx4j.version>
+ 		<!-- Docx4j ImportXHTML -->
+ 		<docx4j-ImportXHTML.version>3.3.6-1</docx4j-ImportXHTML.version>
+ 		<docx4j-XhtmlRenderer.version>3.0.0</docx4j-XhtmlRenderer.version>
+ 		<!-- Docx4j MOXy -->
+ 		<docx4j-moxy-jaxbcontext.version>3.3.6</docx4j-moxy-jaxbcontext.version>
+ 		<persistence.version>2.7.1</persistence.version>
 	</properties>
 
 	<dependencies>
@@ -85,18 +90,6 @@
 			<artifactId>spring-boot-autoconfigure</artifactId>
 		</dependency>
 		
-		<!-- ###################### 词法分析、HTML、CSS 解析工具包###################### -->
-			
-		<!--
-			jsoup 是一款Java的HTML解析器，可直接解析某个URL地址、HTML文本内容。
-			它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。
-		-->
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>${jsoup.version}</version>
-		</dependency>
-		
 		<!-- ###################### Docx4j ###################### -->
 		
 		 <!-- 
@@ -120,42 +113,72 @@
 			http://www.docx4java.org/downloads.html
 		-->
 		
+		<!-- Docx4j Core -->
+		
 		<!-- docx4j is a library which helps you to work with the Office Open XML file format as used in docx documents, pptx presentations, and xlsx spreadsheets. -->
 		<dependency>
 		    <groupId>org.docx4j</groupId>
 		    <artifactId>docx4j</artifactId>
 		    <version>${docx4j.version}</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.slf4j</groupId>
+		    		<artifactId>jcl-over-slf4j</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+		    		<groupId>org.slf4j</groupId>
+		    		<artifactId>slf4j-log4j12</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+		    		<groupId>log4j</groupId>
+		    		<artifactId>log4j</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
+		
+		<!-- Docx4j ImportXHTML -->
+		
+		<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using docx4j  -->
+		<dependency>
+		    <groupId>org.docx4j</groupId>
+		    <artifactId>docx4j-ImportXHTML</artifactId>
+		    <version>${docx4j-ImportXHTML.version}</version>
 		</dependency>
 		<!-- Modified flyingsaucer XML/XHTML and CSS 2.1 renderer, to support docx (and eventually pptx) output  -->
 		<dependency>
 		    <groupId>org.docx4j</groupId>
 		    <artifactId>xhtmlrenderer</artifactId>
-		    <version>3.0.0</version>
+		    <version>${docx4j-XhtmlRenderer.version}</version>
 		</dependency>
-		<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using docx4j  -->
-		<dependency>
-		    <groupId>org.docx4j</groupId>
-		    <artifactId>docx4j-ImportXHTML</artifactId>
-		    <version>3.3.6-1</version>
-		</dependency>
+		
+		<!-- Docx4j MOXy -->
+		
 		<!-- jaxb.properties files specifying that docx4j should use the EclipseLink MOXy (JAXB) runtime  -->
 		<dependency>
 		    <groupId>org.docx4j</groupId>
 		    <artifactId>docx4j-MOXy-JAXBContext</artifactId>
-		    <version>${docx4j.version}</version>
+		    <version>${docx4j-moxy-jaxbcontext.version}</version>
 		</dependency>
-		<!-- Export docx to PDF via XSL FO, using Apache FOP  -->
 		<dependency>
-		    <groupId>org.docx4j</groupId>
-		    <artifactId>docx4j-export-fo</artifactId>
-		    <version>${docx4j.version}</version>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.antlr</artifactId>
+			<version>${persistence.version}</version>
 		</dependency>
-		
-		<!-- <dependency>
-			<groupId>com.github.vindell</groupId>
-			<artifactId>docx4j-template</artifactId>
-			<version>${docx4j-template.version}</version>
-		</dependency> -->
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.asm</artifactId>
+			<version>${persistence.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.core</artifactId>
+			<version>${persistence.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.moxy</artifactId>
+			<version>${persistence.version}</version>
+		</dependency>
 
 	</dependencies>
 

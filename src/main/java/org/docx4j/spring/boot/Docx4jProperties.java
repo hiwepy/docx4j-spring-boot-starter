@@ -13,12 +13,12 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.codehaus.xfire.spring.boot;
+package org.docx4j.spring.boot;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(XfireProperties.PREFIX)
-public class XfireProperties {
+@ConfigurationProperties(Docx4jProperties.PREFIX)
+public class Docx4jProperties {
 
 	public static final String PREFIX = "cas";
 

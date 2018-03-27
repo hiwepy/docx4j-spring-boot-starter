@@ -1,4 +1,4 @@
-package org.codehaus.xfire.spring.boot;
+package org.docx4j.spring.boot;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnProperty(prefix = XfireProperties.PREFIX, value = "enabled", havingValue = "true")
-@EnableConfigurationProperties({ XfireProperties.class })
-public class XfireAutoConfiguration {
+@ConditionalOnProperty(prefix = Docx4jProperties.PREFIX, value = "enabled", havingValue = "true")
+@EnableConfigurationProperties({ Docx4jProperties.class })
+public class Docx4jAutoConfiguration {
 	
 	/**
 	1、首先定义CasConfiguration(loginUrl,prefixUrl),loginUrl为完整的cas登录地址,比如client项目的https://passport.sqzryang.com/login?service=https://client.sqzryang.com,prefixUrl则为cas路径前缀,根据cas的版本号拼接请求地址,用于验证sts是否正确并且返回登录成功后的信息。
