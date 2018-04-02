@@ -1,14 +1,11 @@
-server:
-  tomcat:
-    max-threads: 100
-    min-spare-threads: 20
-  connection-timeout: 5000
-  ssl:
-    key-store: classpath:.keystore
-    key-store-type: JKS
-    key-password: qq123456
-    key-alias: tomcat
-  port: 8080
-spring:  
-  roc
-        
+docx4j:
+  enabled: true
+  font-mapper:
+    '["4仿宋体"]' : "classpath:fonts/SIMFANG.ttf"
+    '["黑体"]' : "classpath:fonts/SIMHEI.ttf"
+    '["楷体"]'  : "classpath:fonts/SIMHEI.ttf"
+    '["仿11宋体"]' : "classpath:fonts/SIMHEI.ttf"
+    '["仿宋体"]' : "classpath:fonts/STFANGSO.ttf"
+    
+    
+    
