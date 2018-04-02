@@ -1,4 +1,4 @@
-package org.codehaus.xfire.spring.boot;
+package org.docx4j.spring.boot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
