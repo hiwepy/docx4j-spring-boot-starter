@@ -365,12 +365,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
  		<!-- Docx4j Core -->
- 		<docx4j.version>3.3.7</docx4j.version>
- 		<!-- Docx4j ImportXHTML -->
- 		<docx4j-ImportXHTML.version>3.3.6-1</docx4j-ImportXHTML.version>
- 		<docx4j-XhtmlRenderer.version>3.0.0</docx4j-XhtmlRenderer.version>
- 		<!-- Docx4j MOXy -->
- 		<docx4j-moxy-jaxbcontext.version>3.3.6</docx4j-moxy-jaxbcontext.version>
+		<docx4j.version>6.1.2</docx4j.version>
+		<docx4j-export-fo.version>6.1.0</docx4j-export-fo.version>
+		<!-- Docx4j ImportXHTML -->
+		<docx4j-importxhtml.version>6.1.0</docx4j-importxhtml.version>
+		<docx4j-xhtmlrenderer.version>3.0.0</docx4j-xhtmlrenderer.version>
+		<!-- Docx4j MOXy -->
+		<docx4j-moxy-jaxbcontext.version>6.0.0</docx4j-moxy-jaxbcontext.version>
  		<maven.version>3.0</maven.version>
        	<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
@@ -378,8 +379,103 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-surefire-plugin.vertsion>2.22.1</maven-surefire-plugin.vertsion>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
- 		<persistence.version>2.7.1</persistence.version>
+ 		<persistence.version>2.7.4</persistence.version>
 	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<!-- ###################### Docx4j ###################### -->
+		
+			 <!-- 
+				docx4j是一个开源的(Apache许可证v2)Java库，专门用来创建、编辑和保存Microsoft Open XML文档（包括Word docx, Powerpoint pptx和Excel xlsx）的Java类库。
+				docx4j最初是由Plutext Pty Ltd于2008年创建。
+				docx4j与微软的OpenXML SDK类似，但是是面向Java的。它使用JAXB在内存中创建Java对象。它的功能强大，对于支持的文档的格式，你可以用docx4j做出你想要的效果。它的功能有：
+				
+				1、 打开已存在的docx/pptx/xlsx(从文件系统, SMB/CIFS, 使用VFS从WebDAV等)
+				2、创建新的docx文档
+				3、用程序来处理docx文档
+				4、CustomXML绑定(使用OpenDoPE插件来处理重复绑定和条件绑定)
+				5、将文件保存成HTML或PDF
+				6、Diff/比较文档、段落
+				7、导入二进制文档(使用Apache POI的HWPF)
+				8、处理Word 2007的xmlPackage(pkg)格式
+				9、将docx保存成docx(压缩格式)或者JCR（未压缩格式）
+				10、字体支持（字体替换，使用文档中嵌入的任何字体）
+				
+				但首先你需要花时间理解JAXB和Open XML文件结构。你可以使用在线的webapp来查看docx/xlsx/pptx的文件结构，或者下载到本地的应用Word AddIn来查看docx的文件结构。
+				
+				http://www.docx4java.org/downloads.html
+			-->
+			
+			<!-- Docx4j Core -->
+	
+			<!-- docx4j is a library which helps you to work with the Office Open 
+				XML file format as used in docx documents, pptx presentations, and xlsx spreadsheets. -->
+			<dependency>
+				<groupId>org.docx4j</groupId>
+				<artifactId>docx4j</artifactId>
+				<version>${docx4j.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-export-fo -->
+			<dependency>
+			    <groupId>org.docx4j</groupId>
+			    <artifactId>docx4j-export-fo</artifactId>
+			    <version>${docx4j-export-fo.version}</version>
+			</dependency>
+						
+			<!-- Docx4j ImportXHTML -->
+	
+			<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using 
+				docx4j -->
+			<dependency>
+				<groupId>org.docx4j</groupId>
+				<artifactId>docx4j-ImportXHTML</artifactId>
+				<version>${docx4j-importxhtml.version}</version>
+			</dependency>
+			<!-- Modified flyingsaucer XML/XHTML and CSS 2.1 renderer, to support 
+				docx (and eventually pptx) output -->
+			<dependency>
+				<groupId>org.docx4j</groupId>
+				<artifactId>xhtmlrenderer</artifactId>
+				<version>${docx4j-xhtmlrenderer.version}</version>
+			</dependency>
+	
+			<!-- Docx4j MOXy -->
+	
+			<!-- jaxb.properties files specifying that docx4j should use the EclipseLink 
+				MOXy (JAXB) runtime -->
+			<dependency>
+				<groupId>org.docx4j</groupId>
+				<artifactId>docx4j-MOXy-JAXBContext</artifactId>
+				<version>${docx4j-moxy-jaxbcontext.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>org.eclipse.persistence.antlr</artifactId>
+				<version>${persistence.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>org.eclipse.persistence.asm</artifactId>
+				<version>${persistence.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>org.eclipse.persistence.core</artifactId>
+				<version>${persistence.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>org.eclipse.persistence.moxy</artifactId>
+				<version>${persistence.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>eclipselink</artifactId>
+				<version>${persistence.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 
@@ -454,70 +550,76 @@
 		-->
 		
 		<!-- Docx4j Core -->
-		
-		<!-- docx4j is a library which helps you to work with the Office Open XML file format as used in docx documents, pptx presentations, and xlsx spreadsheets. -->
+
+		<!-- docx4j is a library which helps you to work with the Office Open 
+			XML file format as used in docx documents, pptx presentations, and xlsx spreadsheets. -->
+		<dependency>
+			<groupId>org.docx4j</groupId>
+			<artifactId>docx4j</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-export-fo -->
 		<dependency>
 		    <groupId>org.docx4j</groupId>
-		    <artifactId>docx4j</artifactId>
-		    <version>${docx4j.version}</version>
-		    <exclusions>
-		    	<exclusion>
-		    		<groupId>org.slf4j</groupId>
-		    		<artifactId>jcl-over-slf4j</artifactId>
-		    	</exclusion>
-		    	<exclusion>
-		    		<groupId>org.slf4j</groupId>
-		    		<artifactId>slf4j-log4j12</artifactId>
-		    	</exclusion>
-		    	<exclusion>
-		    		<groupId>log4j</groupId>
-		    		<artifactId>log4j</artifactId>
-		    	</exclusion>
-		    </exclusions>
+		    <artifactId>docx4j-export-fo</artifactId>
 		</dependency>
-		
+					
 		<!-- Docx4j ImportXHTML -->
-		
-		<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using docx4j  -->
+
+		<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using 
+			docx4j -->
 		<dependency>
-		    <groupId>org.docx4j</groupId>
-		    <artifactId>docx4j-ImportXHTML</artifactId>
-		    <version>${docx4j-ImportXHTML.version}</version>
+			<groupId>org.docx4j</groupId>
+			<artifactId>docx4j-ImportXHTML</artifactId>
 		</dependency>
-		<!-- Modified flyingsaucer XML/XHTML and CSS 2.1 renderer, to support docx (and eventually pptx) output  -->
+		<!-- Modified flyingsaucer XML/XHTML and CSS 2.1 renderer, to support 
+			docx (and eventually pptx) output -->
 		<dependency>
-		    <groupId>org.docx4j</groupId>
-		    <artifactId>xhtmlrenderer</artifactId>
-		    <version>${docx4j-XhtmlRenderer.version}</version>
+			<groupId>org.docx4j</groupId>
+			<artifactId>xhtmlrenderer</artifactId>
 		</dependency>
-		
+
 		<!-- Docx4j MOXy -->
-		
-		<!-- jaxb.properties files specifying that docx4j should use the EclipseLink MOXy (JAXB) runtime  -->
+
+		<!-- jaxb.properties files specifying that docx4j should use the EclipseLink 
+			MOXy (JAXB) runtime -->
 		<dependency>
-		    <groupId>org.docx4j</groupId>
-		    <artifactId>docx4j-MOXy-JAXBContext</artifactId>
-		    <version>${docx4j-moxy-jaxbcontext.version}</version>
+			<groupId>org.docx4j</groupId>
+			<artifactId>docx4j-MOXy-JAXBContext</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.antlr</artifactId>
-			<version>${persistence.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.asm</artifactId>
-			<version>${persistence.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.core</artifactId>
-			<version>${persistence.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.moxy</artifactId>
-			<version>${persistence.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
