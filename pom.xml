@@ -372,6 +372,8 @@
 		<docx4j-xhtmlrenderer.version>3.0.0</docx4j-xhtmlrenderer.version>
 		<!-- Docx4j MOXy -->
 		<docx4j-moxy-jaxbcontext.version>6.0.0</docx4j-moxy-jaxbcontext.version>
+ 		<!-- Docx4j Template -->
+ 		<docx4j-template.version>1.0.0-SNAPSHOT</docx4j-template.version>
  		<maven.version>3.0</maven.version>
        	<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
@@ -474,6 +476,15 @@
 				<artifactId>eclipselink</artifactId>
 				<version>${persistence.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.github.vindell</groupId>
+				<artifactId>docx4j-template-bom</artifactId>
+				<version>${docx4j-template.version}</version>
+				<type>pom</type>
+			    <scope>import</scope>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 
