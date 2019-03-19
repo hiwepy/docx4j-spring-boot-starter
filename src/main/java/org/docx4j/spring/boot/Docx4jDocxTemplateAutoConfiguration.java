@@ -70,8 +70,14 @@ public class Docx4jDocxTemplateAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
-	public WordprocessingMLPackageWriter wmlPackageWriter() {
-		return WordprocessingMLPackageWriter.getWMLPackageWriter();
+	public WordprocessingMLPackageWriter wmlPackageWriter(ConversionHyperlinkHandler hyperlinkHandler,
+			ConversionHTMLScriptElementHandler scriptElementHandler,
+			ConversionHTMLStyleElementHandler styleElementHandler) {
+		WordprocessingMLPackageWriter wmlPackageWriter = WordprocessingMLPackageWriter.getWMLPackageWriter();
+		wmlPackageWriter.setHyperlinkHandler(hyperlinkHandler);
+		wmlPackageWriter.setScriptElementHandler(scriptElementHandler);
+		wmlPackageWriter.setStyleElementHandler(styleElementHandler);
+		return wmlPackageWriter;
 	}
 
 	@Bean
