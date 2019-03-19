@@ -29,18 +29,38 @@ public class Docx4jProperties {
 	 * Enable Docx4j.
 	 */
 	private boolean enabled = false;
+	/**
+	 * Enable Docx4j altChunk.
+	 */
+	private boolean altChunk = false;
+	private boolean landscape = false;
 	/** Font Mapper. */
 	private Map<String /* Font Name */, String /* Location */> fontMapper = new LinkedHashMap<String, String>();
-	/** Font Fix Mapper. 解决中文乱码问题*/
+	/** Font Fix Mapper. 解决中文乱码问题 */
 	private Map<String /* Font Name */, String /* Font Alias */> fontAliasMapper = new LinkedHashMap<String, String>();
-	
-	
+
 	public boolean isEnabled() {
 		return enabled;
 	}
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public boolean isAltChunk() {
+		return altChunk;
+	}
+
+	public void setAltChunk(boolean altChunk) {
+		this.altChunk = altChunk;
+	}
+
+	public boolean isLandscape() {
+		return landscape;
+	}
+
+	public void setLandscape(boolean landscape) {
+		this.landscape = landscape;
 	}
 
 	public Map<String, String> getFontMapper() {

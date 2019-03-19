@@ -4,15 +4,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.annotation.PostConstruct;
+
+import org.docx4j.Docx4J;
+import org.docx4j.events.Docx4jEvent;
 import org.docx4j.fonts.BestMatchingMapper;
 import org.docx4j.fonts.IdentityPlusMapper;
 import org.docx4j.fonts.Mapper;
 import org.docx4j.fonts.PhysicalFont;
 import org.docx4j.fonts.PhysicalFonts;
 import org.docx4j.spring.boot.utils.StringUtils;
+import org.docx4j.template.bus.error.Slf4jLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -23,15 +29,39 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.CollectionUtils;
 
+import net.engio.mbassy.bus.MBassador;
+import net.engio.mbassy.bus.error.IPublicationErrorHandler;
+
 @Configuration
+@ConditionalOnClass({ Docx4J.class })
 @ConditionalOnProperty(prefix = Docx4jProperties.PREFIX, value = "enabled", havingValue = "true")
 @EnableConfigurationProperties({ Docx4jProperties.class })
 public class Docx4jAutoConfiguration implements ResourceLoaderAware {
 	
 	protected static Logger LOG = LoggerFactory.getLogger(Docx4jAutoConfiguration.class);
-	private ResourceLoader resourceLoader;
+	
+	protected ResourceLoader resourceLoader;
 	@Autowired
-	private Docx4jProperties properties;
+	protected Docx4jProperties properties;
+	@Autowired
+	protected MBassador<Docx4jEvent> eventbus;
+	
+	@PostConstruct
+	public void bindEventBus() {
+		Docx4J.setEventNotifier(eventbus);
+	}
+	
+	@Bean
+	@ConditionalOnMissingBean
+	public IPublicationErrorHandler errorHandler() {
+		return new Slf4jLogger();
+	}
+	
+	@Bean
+	@ConditionalOnMissingBean
+	public MBassador<Docx4jEvent> eventbus(IPublicationErrorHandler errorHandler) {
+		return new MBassador<Docx4jEvent>(errorHandler);
+	}
 	
 	@Bean
 	@ConditionalOnMissingBean

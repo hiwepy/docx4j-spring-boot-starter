@@ -1,11 +1,16 @@
 docx4j:
   enabled: true
+  alt-chunk: false
+  landscape: false
   font-mapper:
     '["4仿宋体"]' : "classpath:fonts/SIMFANG.ttf"
     '["黑体"]' : "classpath:fonts/SIMHEI.ttf"
     '["楷体"]'  : "classpath:fonts/SIMHEI.ttf"
     '["仿11宋体"]' : "classpath:fonts/SIMHEI.ttf"
     '["仿宋体"]' : "classpath:fonts/STFANGSO.ttf"
-    
+  template:
+    docx:
+      auto-delete: true
+      input-encoding: UTF-8
     
     
