@@ -34,6 +34,11 @@ public class Docx4jProperties {
 	 */
 	private boolean altChunk = false;
 	private boolean landscape = false;
+	/**
+	 * Enable Docx4j Discover Fonts .
+	 */
+	private boolean discoverFonts = false;
+	
 	/** Font Mapper. */
 	private Map<String /* Font Name */, String /* Location */> fontMapper = new LinkedHashMap<String, String>();
 	/** Font Fix Mapper. 解决中文乱码问题 */
@@ -61,6 +66,14 @@ public class Docx4jProperties {
 
 	public void setLandscape(boolean landscape) {
 		this.landscape = landscape;
+	}
+	
+	public boolean isDiscoverFonts() {
+		return discoverFonts;
+	}
+
+	public void setDiscoverFonts(boolean discoverFonts) {
+		this.discoverFonts = discoverFonts;
 	}
 
 	public Map<String, String> getFontMapper() {
