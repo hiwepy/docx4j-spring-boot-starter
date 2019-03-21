@@ -43,7 +43,7 @@
 		</developer>
 	</developers>
 	
-	<distributionManagement>
+	<!-- <distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
 			<name>Maven Snapshots Repository</name>
@@ -54,8 +54,24 @@
 			<name>Maven Central Staging Repository</name>
 		    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		  </repository>
-	</distributionManagement>
-	
+	</distributionManagement> -->
+	<distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <!-- <url>http://127.0.0.1:8081/repository/maven-releases/</url>  -->
+            <url>http://192.168.1.50:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <!-- <url>http://127.0.0.1:8081/repository/maven-snapshots/</url> -->
+            <url>http://192.168.1.50:8081/repository/maven-snapshots/</url>
+            <!-- 表示是否为Snapshot版本分配一个包含时间戳的构建号 -->
+			<uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+    
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -373,7 +389,7 @@
 		<!-- Docx4j MOXy -->
 		<docx4j-moxy-jaxbcontext.version>6.0.0</docx4j-moxy-jaxbcontext.version>
  		<!-- Docx4j Template -->
- 		<docx4j-template.version>1.0.0-SNAPSHOT</docx4j-template.version>
+ 		<docx4j-template.version>1.0.0.RELEASE</docx4j-template.version>
  		<maven.version>3.0</maven.version>
        	<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
