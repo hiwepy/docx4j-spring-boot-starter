@@ -1,4 +1,4 @@
-# spring-boot-starter-docx4j
+# docx4j-spring-boot-starter
 docx4j starter for spring boot
 
 ### 说明
@@ -20,5 +20,5 @@ docx4j starter for spring boot
 
 ### Sample
 
-[https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-docx4j](https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-docx4j "spring-boot-sample-docx4j")
+[https://github.com/hiwepy/spring-boot-starter-samples/tree/master/spring-boot-sample-docx4j](https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-docx4j "spring-boot-sample-docx4j")
 
