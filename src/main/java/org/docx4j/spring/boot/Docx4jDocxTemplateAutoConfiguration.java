@@ -36,11 +36,6 @@ public class Docx4jDocxTemplateAutoConfiguration {
 	public WordprocessingMLDocxTemplate wmlDocxTemplate(Docx4jDocxTemplateProperties templateProperties)
 			throws IOException {
 		WordprocessingMLDocxTemplate template = new WordprocessingMLDocxTemplate();
-		template.setAutoDelete(templateProperties.isAutoDelete());
-		template.setInputEncoding(templateProperties.getInputEncoding());
-		template.setOutputEncoding(templateProperties.getOutputEncoding());
-		template.setPlaceholderStart(templateProperties.getPlaceholderStart());
-		template.setPlaceholderEnd(templateProperties.getPlaceholderEnd());
 		return template;
 	}
 
