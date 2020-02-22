@@ -637,7 +637,6 @@
 		<dependency>
 			<groupId>com.github.hiwepy</groupId>
 			<artifactId>docx4j-template-core</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.hiwepy</groupId>
