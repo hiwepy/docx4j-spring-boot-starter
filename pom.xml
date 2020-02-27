@@ -698,8 +698,8 @@
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 		</dependency> -->
-		<!-- Docx4j JAXB ReferenceImpl -->
-		<!-- <dependency>
+		<!-- Docx4j JAXB ReferenceImpl
+		<dependency>
 		    <groupId>org.docx4j</groupId>
 		    <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
 		</dependency> -->
