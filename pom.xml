@@ -495,11 +495,6 @@
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.persistence</groupId>
-				<artifactId>org.eclipse.persistence.antlr</artifactId>
-				<version>${persistence.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.persistence</groupId>
 				<artifactId>org.eclipse.persistence.asm</artifactId>
 				<version>${persistence.version}</version>
 			</dependency>
@@ -665,11 +660,11 @@
 			<artifactId>xhtmlrenderer</artifactId>
 		</dependency>
 		
-		<!-- Docx4j JAXB Internal -->
+		<!-- Docx4j JAXB Internal
 		<dependency>
 		    <groupId>org.docx4j</groupId>
 		    <artifactId>docx4j-JAXB-Internal</artifactId>
-		</dependency>
+		</dependency> -->
 				
 		<!-- Docx4j JAXB MOXy -->
 
@@ -677,10 +672,6 @@
 		<!-- <dependency>
 			<groupId>org.docx4j</groupId>
 			<artifactId>docx4j-JAXB-MOXy</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>org.eclipse.persistence.antlr</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
@@ -693,16 +684,13 @@
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.moxy</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
 		</dependency> -->
-		<!-- Docx4j JAXB ReferenceImpl
+		
+		<!-- Docx4j JAXB ReferenceImpl -->
 		<dependency>
 		    <groupId>org.docx4j</groupId>
 		    <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
-		</dependency> -->
+		</dependency>
 			
 		<dependency>
 			<groupId>com.github.hiwepy</groupId>

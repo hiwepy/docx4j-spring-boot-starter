@@ -6,6 +6,8 @@ import org.docx4j.Docx4J;
 import org.docx4j.convert.out.ConversionHTMLScriptElementHandler;
 import org.docx4j.convert.out.ConversionHTMLStyleElementHandler;
 import org.docx4j.convert.out.ConversionHyperlinkHandler;
+import org.docx4j.template.WordprocessingMLDocxSaxTemplate;
+import org.docx4j.template.WordprocessingMLDocxStAXTemplate;
 import org.docx4j.template.WordprocessingMLDocxTemplate;
 import org.docx4j.template.handler.OutputConversionHTMLScriptElementHandler;
 import org.docx4j.template.handler.OutputConversionHTMLStyleElementHandler;
@@ -33,9 +35,23 @@ public class Docx4jDocxTemplateAutoConfiguration {
 	protected static Logger LOG = LoggerFactory.getLogger(Docx4jDocxTemplateAutoConfiguration.class);
 
 	@Bean
-	public WordprocessingMLDocxTemplate wmlDocxTemplate(Docx4jDocxTemplateProperties templateProperties)
+	public WordprocessingMLDocxTemplate wmlDocxTemplate()
 			throws IOException {
 		WordprocessingMLDocxTemplate template = new WordprocessingMLDocxTemplate();
+		return template;
+	}
+
+	@Bean
+	public WordprocessingMLDocxSaxTemplate wmlDocxSaxTemplate()
+			throws IOException {
+		WordprocessingMLDocxSaxTemplate template = new WordprocessingMLDocxSaxTemplate();
+		return template;
+	}
+	
+	@Bean
+	public WordprocessingMLDocxStAXTemplate wmlDocxStAXTemplate()
+			throws IOException {
+		WordprocessingMLDocxStAXTemplate template = new WordprocessingMLDocxStAXTemplate();
 		return template;
 	}
 
