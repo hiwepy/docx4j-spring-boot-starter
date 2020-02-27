@@ -365,7 +365,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
  		<!-- Docx4j Core -->
-		<docx4j.version>8.1.0</docx4j.version>
+		<docx4j.version>8.1.5</docx4j.version>
 		<docx4j-export-fo.version>${docx4j.version}</docx4j-export-fo.version>
 		<!-- Docx4j ImportXHTML -->
 		<docx4j-importxhtml.version>8.0.0</docx4j-importxhtml.version>
@@ -377,6 +377,7 @@
 		<!-- Docx4j Template -->
  		<docx4j-template.version>1.0.1-SNAPSHOT</docx4j-template.version>
  		<persistence.version>2.7.6</persistence.version>
+ 		<jaxb-impl.version>2.4.0-b180830.0438</jaxb-impl.version>
  		<maven.version>3.0</maven.version>
        	<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
@@ -384,7 +385,6 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-surefire-plugin.vertsion>2.22.1</maven-surefire-plugin.vertsion>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
- 		<persistence.version>2.7.4</persistence.version>
 	</properties>
 	
 	<dependencyManagement>
@@ -427,6 +427,7 @@
 			</dependency>
 			 
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-export-fo -->
+			<!-- Export docx to PDF via XSL FO, using Apache FOP -->
 			<dependency>
 			    <groupId>org.docx4j</groupId>
 			    <artifactId>docx4j-export-fo</artifactId>
@@ -449,7 +450,7 @@
 									
 			<!-- Docx4j ImportXHTML -->
 
-			<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using  docx4j -->
+			<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using docx4j  -->
 			<dependency>
 				<groupId>org.docx4j</groupId>
 				<artifactId>docx4j-ImportXHTML</artifactId>
@@ -465,19 +466,23 @@
 			<!-- Docx4j JAXB -->
 			
 			<!-- 
-		    	docx4j-JAXB-Internal (available for docx4j 8.1.x only),
-		    	docx4j-JAXB-MOXy (for docx4j 8 or 11),
-		    	docx4j-JAXB-ReferenceImpl (for docx4j 8 or 11), 
+		    	
+			    docx4j-JAXB-Internal (available for docx4j 8.1.x only),
+			    docx4j-JAXB-MOXy (for docx4j 8 or 11),
+			    docx4j-JAXB-ReferenceImpl (for docx4j 8 or 11),
 		    	You should use one and only one of docx4j-JAXB-*
 		    -->
 			
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-JAXB-Internal -->
+			<!-- config specifying that docx4j should use the JAXB Internal implementation
+				 (which is available but deprecated in Java 9 and 10)  -->
 			<dependency>
 			    <groupId>org.docx4j</groupId>
 			    <artifactId>docx4j-JAXB-Internal</artifactId>
 			    <version>${docx4j-jaxb.version}</version>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-JAXB-MOXy -->
+			<!-- config specifying that docx4j should use the EclipseLink MOXy (JAXB) runtime   -->
 			<dependency>
 			    <groupId>org.docx4j</groupId>
 			    <artifactId>docx4j-JAXB-MOXy</artifactId>
@@ -509,6 +514,7 @@
 				<version>${persistence.version}</version>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-JAXB-ReferenceImpl -->
+			<!-- config specifying that docx4j should use the JAXB reference impls  -->
 			<dependency>
 			    <groupId>org.docx4j</groupId>
 			    <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
@@ -524,12 +530,14 @@
 			    <version>${docx4j-openxml.version}</version>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-openxml-objects-pml -->
+			<!-- Our JAXB representation of OpenXML Presentation Markup Language (pml)  -->
 			<dependency>
 			    <groupId>org.docx4j</groupId>
 			    <artifactId>docx4j-openxml-objects-pml</artifactId>
 			    <version>${docx4j-openxml.version}</version>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-openxml-objects-sml -->
+			<!-- Our JAXB representation of OpenXML Spreadsheet Markup Language (sml)  -->
 			<dependency>
 			    <groupId>org.docx4j</groupId>
 			    <artifactId>docx4j-openxml-objects-sml</artifactId>
@@ -598,7 +606,7 @@
 		
 		<!-- ###################### Docx4j ###################### -->
 		
-		 <!-- 
+		<!-- 
 			docx4j是一个开源的(Apache许可证v2)Java库，专门用来创建、编辑和保存Microsoft Open XML文档（包括Word docx, Powerpoint pptx和Excel xlsx）的Java类库。
 			docx4j最初是由Plutext Pty Ltd于2008年创建。
 			docx4j与微软的OpenXML SDK类似，但是是面向Java的。它使用JAXB在内存中创建Java对象。它的功能强大，对于支持的文档的格式，你可以用docx4j做出你想要的效果。它的功能有：
@@ -641,11 +649,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-export-fo -->
-		<dependency>
-		    <groupId>org.docx4j</groupId>
-		    <artifactId>docx4j-export-fo</artifactId>
-		</dependency>
 					
 		<!-- Docx4j ImportXHTML -->
 
@@ -661,12 +664,17 @@
 			<groupId>org.docx4j</groupId>
 			<artifactId>xhtmlrenderer</artifactId>
 		</dependency>
-
-		<!-- Docx4j MOXy -->
-
-		<!-- jaxb.properties files specifying that docx4j should use the EclipseLink 
-			MOXy (JAXB) runtime -->
+		
+		<!-- Docx4j JAXB Internal -->
 		<dependency>
+		    <groupId>org.docx4j</groupId>
+		    <artifactId>docx4j-JAXB-Internal</artifactId>
+		</dependency>
+				
+		<!-- Docx4j JAXB MOXy -->
+
+		<!-- jaxb.properties files specifying that docx4j should use the EclipseLink MOXy (JAXB) runtime -->
+		<!-- <dependency>
 			<groupId>org.docx4j</groupId>
 			<artifactId>docx4j-JAXB-MOXy</artifactId>
 		</dependency>
@@ -689,9 +697,13 @@
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
+		</dependency> -->
+		<!-- Docx4j JAXB ReferenceImpl -->
+		<!-- <dependency>
+		    <groupId>org.docx4j</groupId>
+		    <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
+		</dependency> -->
+			
 		<dependency>
 			<groupId>com.github.hiwepy</groupId>
 			<artifactId>docx4j-template-core</artifactId>
