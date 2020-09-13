@@ -14,7 +14,7 @@ docx4j starter for spring boot
 <dependency>
 	<groupId>com.github.hiwepy</groupId>
 	<artifactId>docx4j-spring-boot-starter</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1.RELEASE</version>
 </dependency>
 ```
 
