@@ -364,10 +364,10 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- Docx4j Core -->
-		<docx4j.version>8.1.5</docx4j.version>
+		<docx4j.version>8.3.4</docx4j.version>
 		<docx4j-export-fo.version>${docx4j.version}</docx4j-export-fo.version>
 		<!-- Docx4j ImportXHTML -->
-		<docx4j-importxhtml.version>8.0.0</docx4j-importxhtml.version>
+		<docx4j-importxhtml.version>8.3.2</docx4j-importxhtml.version>
 		<docx4j-xhtmlrenderer.version>3.0.0</docx4j-xhtmlrenderer.version>
 		<!-- Docx4j JAXB -->
 		<docx4j-jaxb.version>${docx4j.version}</docx4j-jaxb.version>
@@ -375,8 +375,8 @@
 		<docx4j-openxml.version>${docx4j.version}</docx4j-openxml.version>
 		<!-- Docx4j Template -->
 		<docx4j-template.version>1.0.1.RELEASE</docx4j-template.version>
-		<persistence.version>2.7.6</persistence.version>
-		<jaxb-impl.version>2.4.0-b180830.0438</jaxb-impl.version>
+		<persistence.version>3.0.2</persistence.version>
+		<jaxb-impl.version>3.0.2</jaxb-impl.version>
 		<maven.version>3.0</maven.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
