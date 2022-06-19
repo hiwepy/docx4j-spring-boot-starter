@@ -9,7 +9,7 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	
+
 	<groupId>com.github.hiwepy</groupId>
 	<artifactId>docx4j-spring-boot-starter</artifactId>
 	<description>Spring Boot Starter For Docx4j</description>
@@ -42,7 +42,7 @@
 			<timezone>+8</timezone>
 		</developer>
 	</developers>
-	
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -55,7 +55,7 @@
 		    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		  </repository>
 	</distributionManagement>
-    
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -65,7 +65,6 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
-						<defaultLibBundleDir>lib</defaultLibBundleDir>
 						<source>${java.version}</source>
 						<target>${java.version}</target>
 						<encoding>${project.build.sourceEncoding}</encoding>
@@ -146,9 +145,7 @@
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${maven-source-plugin.version}</version>
 					<configuration>
-						<testFailureIgnore>true</testFailureIgnore>
 						<attach>true</attach>
-						<encoding>${project.build.sourceEncoding}</encoding>
 					</configuration>
 					<executions>
 						<execution>
@@ -168,8 +165,8 @@
 						<!-- 跳过单元测试 -->
 						<skip>true</skip>
 						<skipTests>true</skipTests>
-						<!-- forkMode 可设置值有 “never”， “once”， “always” 和 “pertest”。 pretest： 
-							每一个测试创建一个新进程，为每个测试创建新的JVM是单独测试的最彻底方式，但也是最慢的，不适合hudson上持续回归。 once：在一个进程中进行所有测试。once为默认设置，在Hudson上持续回归时建议使用默认设置。 
+						<!-- forkMode 可设置值有 “never”， “once”， “always” 和 “pertest”。 pretest：
+							每一个测试创建一个新进程，为每个测试创建新的JVM是单独测试的最彻底方式，但也是最慢的，不适合hudson上持续回归。 once：在一个进程中进行所有测试。once为默认设置，在Hudson上持续回归时建议使用默认设置。
 							always：在一个进程中并行的运行脚本，Junit4.7以上版本才可以使用，surefire的版本要在2.6以上提供这个功能，其中 threadCount：执行时，指定可分配的线程数量。只和参数parallel配合使用有效。默认：5。 -->
 						<forkMode>once</forkMode>
 						<argLine>-Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=256m -Dfile.encoding=UTF-8</argLine>
@@ -190,7 +187,6 @@
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${maven-jar-plugin.version}</version>
 					<configuration>
-						<encoding>${project.build.sourceEncoding}</encoding>
 						<skipIfEmpty>true</skipIfEmpty>
 						<archive>
 							<manifest>
@@ -206,8 +202,6 @@
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>${maven-javadoc-plugin.version}</version>
 					<configuration>
-						<aggregate>true</aggregate>
-						<argLine>-Dfile.encoding=UTF-8</argLine>
 						<charset>${project.build.sourceEncoding}</charset>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<docencoding>${project.build.sourceEncoding}</docencoding>
@@ -360,20 +354,20 @@
 			</build>
 		</profile>
 	</profiles>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
  		<!-- Docx4j Core -->
-		<docx4j.version>8.1.5</docx4j.version>
+		<docx4j.version>8.3.7</docx4j.version>
 		<docx4j-export-fo.version>${docx4j.version}</docx4j-export-fo.version>
 		<!-- Docx4j ImportXHTML -->
-		<docx4j-importxhtml.version>8.0.0</docx4j-importxhtml.version>
+		<docx4j-importxhtml.version>8.2.1</docx4j-importxhtml.version>
 		<docx4j-xhtmlrenderer.version>3.0.0</docx4j-xhtmlrenderer.version>
 		<!-- Docx4j JAXB -->
 		<docx4j-jaxb.version>${docx4j.version}</docx4j-jaxb.version>
 		<!-- Docx4j OpenXML -->
-		<docx4j-openxml.version>${docx4j.version}</docx4j-openxml.version> 		
+		<docx4j-openxml.version>${docx4j.version}</docx4j-openxml.version>
 		<!-- Docx4j Template -->
  		<docx4j-template.version>1.0.1.RELEASE</docx4j-template.version>
  		<persistence.version>2.7.6</persistence.version>
@@ -386,21 +380,21 @@
         <maven-surefire-plugin.vertsion>2.22.1</maven-surefire-plugin.vertsion>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
 	</properties>
-	
+
 	<dependencyManagement>
 		<dependencies>
-			
+
 			<!-- ###################### Docx4j ###################### -->
-			
+
 			<!-- https://www.docx4java.org/downloads.html -->
-			
-			<!-- docx4j是一个开源的(Apache许可证v2)Java库，专门用来创建、编辑和保存Microsoft Open XML文档（包括Word 
-				docx, Powerpoint pptx和Excel xlsx）的Java类库。 docx4j最初是由Plutext Pty Ltd于2008年创建。 
-				docx4j与微软的OpenXML SDK类似，但是是面向Java的。它使用JAXB在内存中创建Java对象。它的功能强大，对于支持的文档的格式，你可以用docx4j做出你想要的效果。它的功能有： 
-				1、 打开已存在的docx/pptx/xlsx(从文件系统, SMB/CIFS, 使用VFS从WebDAV等) 2、创建新的docx文档 3、用程序来处理docx文档 
-				4、CustomXML绑定(使用OpenDoPE插件来处理重复绑定和条件绑定) 5、将文件保存成HTML或PDF 6、Diff/比较文档、段落 7、导入二进制文档(使用Apache 
-				POI的HWPF) 8、处理Word 2007的xmlPackage(pkg)格式 9、将docx保存成docx(压缩格式)或者JCR（未压缩格式） 
-				10、字体支持（字体替换，使用文档中嵌入的任何字体） 但首先你需要花时间理解JAXB和Open XML文件结构。你可以使用在线的webapp来查看docx/xlsx/pptx的文件结构，或者下载到本地的应用Word 
+
+			<!-- docx4j是一个开源的(Apache许可证v2)Java库，专门用来创建、编辑和保存Microsoft Open XML文档（包括Word
+				docx, Powerpoint pptx和Excel xlsx）的Java类库。 docx4j最初是由Plutext Pty Ltd于2008年创建。
+				docx4j与微软的OpenXML SDK类似，但是是面向Java的。它使用JAXB在内存中创建Java对象。它的功能强大，对于支持的文档的格式，你可以用docx4j做出你想要的效果。它的功能有：
+				1、 打开已存在的docx/pptx/xlsx(从文件系统, SMB/CIFS, 使用VFS从WebDAV等) 2、创建新的docx文档 3、用程序来处理docx文档
+				4、CustomXML绑定(使用OpenDoPE插件来处理重复绑定和条件绑定) 5、将文件保存成HTML或PDF 6、Diff/比较文档、段落 7、导入二进制文档(使用Apache
+				POI的HWPF) 8、处理Word 2007的xmlPackage(pkg)格式 9、将docx保存成docx(压缩格式)或者JCR（未压缩格式）
+				10、字体支持（字体替换，使用文档中嵌入的任何字体） 但首先你需要花时间理解JAXB和Open XML文件结构。你可以使用在线的webapp来查看docx/xlsx/pptx的文件结构，或者下载到本地的应用Word
 				AddIn来查看docx的文件结构。 http://www.docx4java.org/downloads.html -->
 
 			<!-- Docx4j Core -->
@@ -425,7 +419,7 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			 
+
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-export-fo -->
 			<!-- Export docx to PDF via XSL FO, using Apache FOP -->
 			<dependency>
@@ -440,14 +434,14 @@
 			    <artifactId>docx4j-docx-anon</artifactId>
 			    <version>${docx4j.version}</version>
 			</dependency>
-						
+
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-diffx -->
 			<dependency>
 			    <groupId>org.docx4j</groupId>
 			    <artifactId>docx4j-diffx</artifactId>
 			    <version>${docx4j.version}</version>
 			</dependency>
-									
+
 			<!-- Docx4j ImportXHTML -->
 
 			<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using docx4j  -->
@@ -462,17 +456,17 @@
 				<artifactId>xhtmlrenderer</artifactId>
 				<version>${docx4j-xhtmlrenderer.version}</version>
 			</dependency>
-			
+
 			<!-- Docx4j JAXB -->
-			
-			<!-- 
-		    	
+
+			<!--
+
 			    docx4j-JAXB-Internal (available for docx4j 8.1.x only),
 			    docx4j-JAXB-MOXy (for docx4j 8 or 11),
 			    docx4j-JAXB-ReferenceImpl (for docx4j 8 or 11),
 		    	You should use one and only one of docx4j-JAXB-*
 		    -->
-			
+
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-JAXB-Internal -->
 			<!-- config specifying that docx4j should use the JAXB Internal implementation
 				 (which is available but deprecated in Java 9 and 10)  -->
@@ -515,9 +509,9 @@
 			    <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
 			    <version>${docx4j-jaxb.version}</version>
 			</dependency>
-			
+
 			<!-- Docx4j OpenXML -->
-			
+
 			<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-openxml-objects -->
 			<dependency>
 			    <groupId>org.docx4j</groupId>
@@ -538,7 +532,7 @@
 			    <artifactId>docx4j-openxml-objects-sml</artifactId>
 			    <version>${docx4j-openxml.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.github.hiwepy</groupId>
 				<artifactId>docx4j-template-bom</artifactId>
@@ -546,7 +540,7 @@
 				<type>pom</type>
 			    <scope>import</scope>
 			</dependency>
-			
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -598,14 +592,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
 		</dependency>
-		
+
 		<!-- ###################### Docx4j ###################### -->
-		
-		<!-- 
+
+		<!--
 			docx4j是一个开源的(Apache许可证v2)Java库，专门用来创建、编辑和保存Microsoft Open XML文档（包括Word docx, Powerpoint pptx和Excel xlsx）的Java类库。
 			docx4j最初是由Plutext Pty Ltd于2008年创建。
 			docx4j与微软的OpenXML SDK类似，但是是面向Java的。它使用JAXB在内存中创建Java对象。它的功能强大，对于支持的文档的格式，你可以用docx4j做出你想要的效果。它的功能有：
-			
+
 			1、 打开已存在的docx/pptx/xlsx(从文件系统, SMB/CIFS, 使用VFS从WebDAV等)
 			2、创建新的docx文档
 			3、用程序来处理docx文档
@@ -616,15 +610,15 @@
 			8、处理Word 2007的xmlPackage(pkg)格式
 			9、将docx保存成docx(压缩格式)或者JCR（未压缩格式）
 			10、字体支持（字体替换，使用文档中嵌入的任何字体）
-			
+
 			但首先你需要花时间理解JAXB和Open XML文件结构。你可以使用在线的webapp来查看docx/xlsx/pptx的文件结构，或者下载到本地的应用Word AddIn来查看docx的文件结构。
-			
+
 			http://www.docx4java.org/downloads.html
 		-->
-		
+
 		<!-- Docx4j Core -->
 
-		<!-- docx4j is a library which helps you to work with the Office Open 
+		<!-- docx4j is a library which helps you to work with the Office Open
 			XML file format as used in docx documents, pptx presentations, and xlsx spreadsheets. -->
 		<dependency>
 			<groupId>org.docx4j</groupId>
@@ -644,28 +638,28 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-					
+
 		<!-- Docx4j ImportXHTML -->
 
-		<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using 
+		<!-- docx4j-ImportXHTML converts XHTML to OpenXML WordML (docx) using
 			docx4j -->
 		<dependency>
 			<groupId>org.docx4j</groupId>
 			<artifactId>docx4j-ImportXHTML</artifactId>
 		</dependency>
-		<!-- Modified flyingsaucer XML/XHTML and CSS 2.1 renderer, to support 
+		<!-- Modified flyingsaucer XML/XHTML and CSS 2.1 renderer, to support
 			docx (and eventually pptx) output -->
 		<dependency>
 			<groupId>org.docx4j</groupId>
 			<artifactId>xhtmlrenderer</artifactId>
 		</dependency>
-		
+
 		<!-- Docx4j JAXB Internal
 		<dependency>
 		    <groupId>org.docx4j</groupId>
 		    <artifactId>docx4j-JAXB-Internal</artifactId>
 		</dependency> -->
-				
+
 		<!-- Docx4j JAXB MOXy -->
 
 		<!-- jaxb.properties files specifying that docx4j should use the EclipseLink MOXy (JAXB) runtime -->
@@ -685,13 +679,13 @@
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.moxy</artifactId>
 		</dependency> -->
-		
+
 		<!-- Docx4j JAXB ReferenceImpl -->
 		<dependency>
 		    <groupId>org.docx4j</groupId>
 		    <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
 		</dependency>
-			
+
 		<dependency>
 			<groupId>com.github.hiwepy</groupId>
 			<artifactId>docx4j-template-core</artifactId>
