@@ -15,23 +15,23 @@
  */	
 package org.docx4j.spring.boot;
 
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+import org.docx4j.template.WordprocessingMLDocxStAXTemplate;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
-import org.docx4j.template.WordprocessingMLDocxStAXTemplate;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
 public class WordprocessingMLDocxStAXTemplate_Test {
 
 	protected WordprocessingMLDocxStAXTemplate docxTemplate = null;
 	
-	@Before
-	public void Before() throws IOException {
+	@BeforeEach
+	public void before() throws IOException {
 		docxTemplate = new WordprocessingMLDocxStAXTemplate();
 	}
 	
@@ -51,7 +51,7 @@ public class WordprocessingMLDocxStAXTemplate_Test {
 		
 	}
 	
-	@After
+	@AfterEach
 	public void after() {
 		docxTemplate = null;
 	}

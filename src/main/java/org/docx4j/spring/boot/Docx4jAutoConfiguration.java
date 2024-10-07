@@ -1,7 +1,7 @@
 package org.docx4j.spring.boot;
 
-import javax.annotation.PostConstruct;
 
+import jakarta.annotation.PostConstruct;
 import org.docx4j.Docx4J;
 import org.docx4j.events.Docx4jEvent;
 import org.docx4j.spring.boot.event.linstener.ApplicationReadyFontMapperistener;

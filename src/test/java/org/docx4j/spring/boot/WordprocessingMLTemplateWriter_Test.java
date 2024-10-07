@@ -18,15 +18,15 @@ package org.docx4j.spring.boot;
 import java.io.File;
 
 import org.docx4j.template.io.WordprocessingMLTemplateWriter;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class WordprocessingMLTemplateWriter_Test {
 
 	protected WordprocessingMLTemplateWriter wemplateWriter = null;
 	
-	@Before
+	@BeforeEach
 	public void Before() {
 		wemplateWriter = WordprocessingMLTemplateWriter.getWMLTemplateWriter();
 		
@@ -40,7 +40,7 @@ public class WordprocessingMLTemplateWriter_Test {
 		
 	}
 	
-	@After
+	@AfterEach
 	public void after() {
 		wemplateWriter = null;
 	}

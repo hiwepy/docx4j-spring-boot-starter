@@ -22,15 +22,15 @@ import java.util.Map;
 
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.template.WordprocessingMLDocxTemplate;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class WordprocessingMLDocxTemplate_Test {
 
 	protected WordprocessingMLDocxTemplate docxTemplate = null;
 	
-	@Before
+	@BeforeEach
 	public void Before() throws IOException {
 		docxTemplate = new WordprocessingMLDocxTemplate();
 	}
@@ -51,7 +51,7 @@ public class WordprocessingMLDocxTemplate_Test {
 		
 	}
 	
-	@After
+	@AfterEach
 	public void after() {
 		docxTemplate = null;
 	}
