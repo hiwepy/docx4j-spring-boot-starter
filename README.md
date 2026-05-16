@@ -12,7 +12,7 @@ docx4j starter for spring boot
 
 ``` xml
 <dependency>
-	<groupId>com.github.hiwepy</groupId>
+	<groupId>io.github.hiwepy</groupId>
 	<artifactId>docx4j-spring-boot-starter</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
 </dependency>
